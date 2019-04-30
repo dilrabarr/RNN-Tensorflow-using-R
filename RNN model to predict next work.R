@@ -1,15 +1,20 @@
+#Importing necessary library
 library(tensorflow)
 library(keras)
+#Sample text from Obama's tweet 
 text = "My heart goes out to the victims and their families in London. 
         No act of terror can shake the strength and resilience of our British ally.Chuck Berry rolled over everyone who came before him – and turned up everyone who came after. 
 We'll miss you, Chuck. Be good.On International Women’s Day, @MichelleObama and I are inspired by all of you who embrace your power to drive change.
 Humbled to be recognized by a family with a legacy of service. Who's your #ProfileInCourage? Tell me about them:"
+
 text <- unlist(strsplit(text, ' ', fixed=TRUE))
 dictionary <- sort(unique(text))
 text_v <- rep(0, length(text))
 for(i in 1:length(dictionary)){
   text_v[which(text == dictionary[[i]])]<-i
 }
+
+# RNN set-up
 #parameters
 learning_rate<- 0.001
 training_iters <- 10000L
